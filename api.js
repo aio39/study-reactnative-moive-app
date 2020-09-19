@@ -14,8 +14,9 @@ const getAnything = async (path, params = {}) => {
   try {
     const {
       data: { results },
+      data, // 일부 request의 object에는 results가 list로 반환 안 되는 경우
     } = await makeRequest(path, params);
-    return [results, null];
+    return [results || data, null];
   } catch (e) {
     return [null, e];
   }
@@ -38,3 +39,5 @@ export const tvApi = {
   search: (query) => getAnything('/search/tv', { query }),
   show: (id) => getAnything(`/tv/${id}`),
 };
+
+export const apiImage = (path) => `https://image.tmdb.org/t/p/w500${path}`;
