@@ -1,7 +1,11 @@
-import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { AppLoading } from 'expo';
+import { Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
+import { Ionicons } from '@expo/vector-icons';
+import Stack from './navigation/Stack';
 
 const cacheImages = (Images) =>
   Images.map((image) => {
@@ -12,17 +16,32 @@ const cacheImages = (Images) =>
     }
   });
 
+const cacheFonts = (fonts) =>
+  fonts.map((font) => [
+    Font.loadAsync(font),
+    Font.loadAsync(font),
+    Font.loadAsync(font),
+  ]);
+
 export default function App() {
   const [isReady, setIsReady] = useState(false);
-  const loadAssets = async () => {
+  const loadAssets = () => {
+    // startAsync (function) -- A function that returns a Promise, and the Promise should resolve when the app is done loading required data and assets.
     const images = cacheImages([
       'https://images.unsplash.com/photo-1599687269705-11dc1b3c3699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
       require('./assets/splash.jpg'),
     ]);
-    console.log(images);
+    // console.log(images);
+    const fonts = cacheFonts([Ionicons.font]);
+    // console.log(fonts);
+    return Promise.all([...images, ...fonts]);
   };
   const onFinish = () => setIsReady(true);
-  return isReady ? null : (
+  return isReady ? (
+    <NavigationContainer>
+      <Stack />
+    </NavigationContainer>
+  ) : (
     <AppLoading
       startAsync={loadAssets}
       onFinish={onFinish}
