@@ -6,7 +6,20 @@ import Tabs from './Tabs';
 const Stack = createStackNavigator();
 
 export default () => (
-  <Stack.Navigator>
+  <Stack.Navigator
+    mode="card"
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: 'black',
+        borderBottomColor: 'black',
+        shadowColor: 'black', // for ios
+      },
+      headerTintColor: 'white',
+      headerBackTitleVisible: false,
+      gestureEnabled: true, // for android
+      headerTitleAlign: 'center',
+    }}
+  >
     <Stack.Screen name="Tabs" component={Tabs} />
     <Stack.Screen name="Detail" component={Detail} />
   </Stack.Navigator>
