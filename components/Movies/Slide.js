@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native';
 import { apiImage } from '../../api';
 import Poster from '../Poster';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Votes from '../Votes';
 
 const Container = styled.View`
   width: 100%;
@@ -35,14 +36,10 @@ const Title = styled.Text`
   font-size: 19px;
   margin-bottom: 10px;
 `;
-const Votes = styled.Text`
-  color: white;
-  color: rgb(220, 220, 220);
+const VotesContainer = styled.View`
   margin-bottom: 7px;
-  font-size: 12px;
 `;
 const OverView = styled.Text`
-  color: white;
   color: rgb(220, 220, 220);
   font-size: 14px;
   font-weight: 500;
@@ -51,7 +48,7 @@ const OverView = styled.Text`
 const Button = styled.View`
   margin-top: 10px;
   background-color: #e74c3c;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 5px;
 `;
 
@@ -65,9 +62,13 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
     <Content>
       <Poster url={apiImage(poster)} />
       <Data>
-        <Title>{title.slice(0, 30)}</Title>
-        <Votes>👍 {votes}/10</Votes>
-        <OverView>{overview.slice(0, 100)}</OverView>
+        <Title>{title.length > 30 ? `${title.slice(0, 20)}...` : title}</Title>
+        <VotesContainer>
+          <Votes votes={votes} />
+        </VotesContainer>
+        <OverView>
+          {overview.length > 100 ? `${overview.slice(0, 100)}...` : overview}
+        </OverView>
         <TouchableOpacity>
           <Button>
             <ButtonText>View Details</ButtonText>
