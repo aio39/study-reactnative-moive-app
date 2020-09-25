@@ -15,7 +15,7 @@ const Container = styled.View`
 const Title = styled.Text`
   color: white;
   font-weight: 500;
-  marign: 10px 0px 5px 0px;
+  margin: 10px 0px 5px 0px;
 `;
 
 const Vertical = ({ id, poster, title, votes }) => (
