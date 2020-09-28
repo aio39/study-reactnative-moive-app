@@ -28,7 +28,7 @@ export default function App() {
   const loadAssets = () => {
     // startAsync (function) -- A function that returns a Promise, and the Promise should resolve when the app is done loading required data and assets.
     const images = cacheImages([
-      'https://images.unsplash.com/photo-1599687269705-11dc1b3c3699?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60',
+      'https://images.unsplash.com/photo-1486693326701-1ea88c6e2af3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
       require('./assets/splash.jpg'),
     ]);
     // console.log(images);

@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
 import Poster from './Poster';
-import Votes from './Votes';
-import { apiImage } from '../api';
 import { formatDate, trimText } from '../utils';
 import { TouchableOpacity } from 'react-native';
 
@@ -55,8 +53,7 @@ const Horizontal = ({ id, title, poster, overview, releaseDate }) => (
 Horizontal.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
+  poster: PropTypes.string,
   overview: PropTypes.string.isRequired,
   releaseDate: PropTypes.string,
 };

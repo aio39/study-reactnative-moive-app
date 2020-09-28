@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import { apiImage } from '../api';
 import Votes from './Votes';
 import Poster from './Poster';
 import { TouchableOpacity } from 'react-native';
@@ -23,14 +22,14 @@ const Vertical = ({ id, poster, title, votes }) => (
     <Container>
       <Poster url={poster} />
       <Title>{trimText(title, 15)}</Title>
-      <Votes votes={votes} />
+      {votes > 0 && <Votes votes={votes} />}
     </Container>
   </TouchableOpacity>
 );
 Vertical.propTypes = {
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   title: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
+  votes: PropTypes.number,
   id: PropTypes.number.isRequired,
 };
 
